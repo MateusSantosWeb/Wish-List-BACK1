@@ -241,3 +241,4 @@
 /home/mateus.santos@toshyro.local/Downloads/Back-End-main/obj/Debug/net8.0/WishListAPI.pdb
 /home/mateus.santos@toshyro.local/Downloads/Back-End-main/obj/Debug/net8.0/WishListAPI.genruntimeconfig.cache
 /home/mateus.santos@toshyro.local/Downloads/Back-End-main/obj/Debug/net8.0/ref/WishListAPI.dll
+/home/mateus.santos@toshyro.local/Downloads/Back-End-main/obj/Debug/net8.0/WishListAPI.sourcelink.json

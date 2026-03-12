@@ -135,14 +135,21 @@ builder.Services.AddCors(options =>
     });
 });
 
-// ✅ CONFIGURAR PORTA PARA O RENDER (usa variável PORT ou padrão 10000)
-var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-Console.WriteLine($"[DEBUG] Porta configurada: {port}");
-
-builder.WebHost.ConfigureKestrel(serverOptions =>
+// ✅ CONFIGURAR PORTA PARA PLATAFORMAS (Render, etc.)
+// Importante: nao force porta default aqui, senao voce ignora launchSettings/ASPNETCORE_URLS no ambiente local.
+var portEnv = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(portEnv) && int.TryParse(portEnv, out var port))
 {
-    serverOptions.ListenAnyIP(int.Parse(port));
-});
+    Console.WriteLine($"[DEBUG] PORT detectada: {port}");
+    builder.WebHost.ConfigureKestrel(serverOptions =>
+    {
+        serverOptions.ListenAnyIP(port);
+    });
+}
+else
+{
+    Console.WriteLine("[DEBUG] PORT nao definida. Usando configuracao padrao (launchSettings/ASPNETCORE_URLS).");
+}
 
 var app = builder.Build();
 
