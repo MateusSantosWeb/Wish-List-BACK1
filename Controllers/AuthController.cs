@@ -57,7 +57,7 @@ namespace WishListAPI.Controllers
                 Email = model.Email,
                 Role = userRole.ToString(),
                 CodigoNamorada = model.CodigoNamorada,
-                DataCriacao = DateTime.Now
+                DataCriacao = DateTime.UtcNow
             };
 
             user.SenhaHash = _passwordHasher.HashPassword(user, model.Senha);
